@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Geocode Search for Postcodes</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="libs/css/styles.css" />
+    <link rel="stylesheet" href="libs/css/output.css" />
+  </head>
+
+  <body class="min-h-full">
+    <main class="h-screen m-auto p-10">
+      <table
+        class="max-w-5xl h-full w-full table-auto border border-separate m-auto"
+      >
+        <tr class="h-12 border *:border">
+          <th class="">API Name</th>
+          <th class="">API Description</th>
+          <th class=""></th>
+        </tr>
+        <tr class="h-20 border *:border">
+          <th>General search for places</th>
+          <td class="px-3 flex h-[inherit] gap-3 items-center">
+            <p class="text-sm">
+              Search over all attributes of a place and returns the names found
+              for the search term.
+            </p>
+            <input
+              class="px-1 rounded-md border placeholder:text-xs placeholder:text-slate-700"
+              type="text"
+              placeholder="place name, country, name, continent"
+            />
+          </td>
+          <td class="w-20 text-center">
+            <button class="rounded-md border text-sm p-1" type="submit">
+              Submit
+            </button>
+          </td>
+        </tr>
+        <tr class="h-20 border *:border">
+          <th>Find nearby postal codes</th>
+          <td class="px-3 flex h-[inherit] gap-3 items-center">
+            <p class="text-sm">
+              Enter a postcode and find other postcodes in a 30km distance
+            </p>
+            <input
+              class="h-7 ml-auto rounded-md border justify-self-end px-1 placeholder:text-xs placeholder:text-slate-700"
+              type="text"
+              placeholder="postcode"
+            />
+          </td>
+          <td class="text-center">
+            <button class="rounded-md border text-sm p-1" type="submit">
+              Submit
+            </button>
+          </td>
+        </tr>
+        <tr class="h-20 border *:border">
+          <th>Wikipedia Fulltext Search</th>
+          <td class="px-3 flex h-[inherit] gap-3 items-center">
+            <p>Returns the wikipedia entries found for the searchterm</p>
+            <input
+              class="h-7 ml-auto rounded-md border justify-self-end px-1 placeholder:text-xs placeholder:text-slate-700"
+              type="text"
+              placeholder="place"
+            />
+          </td>
+          <td class="text-center">
+            <button class="rounded-md border text-sm p-1" type="submit">
+              Submit
+            </button>
+          </td>
+        </tr>
+        <tr class="h">
+          <td id="results"></td>
+        </tr>
+      </table>
+    </main>
+
+    <footer></footer>
+    <script src="libs/js/jquery.js" type="application/javascript"></script>
+    <script type="application/javascript" src="libs/js/script.js"></script>
+  </body>
+</html>
