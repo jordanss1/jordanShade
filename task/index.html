@@ -9,6 +9,7 @@
 
   <body class="min-h-full">
     <main class="h-screen m-auto p-10">
+      <div id="”preloader”"></div>
       <table
         class="max-w-5xl h-full w-full table-auto border border-separate m-auto"
       >
@@ -52,7 +53,7 @@
               class="h-7 ml-auto rounded-md border justify-self-end px-1 placeholder:text-xs placeholder:text-slate-700"
               type="text"
               id="input_2"
-              placeholder="postcode"
+              placeholder="postalcode"
             />
           </td>
           <td class="text-center">
@@ -86,14 +87,24 @@
             </button>
           </td>
         </tr>
-        <tr class="h">
-          <td id="results"></td>
+        <tr class="border h-full">
+          <td class="text-center h-full" colspan="3">
+            <h2 class="font-bold pb-3 text-lg" id="results_label"></h2>
+            <p class="text-center bold mt-3" id="message"></p>
+            <ul
+              id="results"
+              class="h-full w-full flex mt-5 flex-col gap-2"
+            ></ul>
+          </td>
         </tr>
       </table>
     </main>
 
     <footer></footer>
     <script src="libs/js/jquery.js" type="application/javascript"></script>
-    <script type="application/javascript" src="libs/js/script.js"></script>
+    <script
+      type="application/javascript"
+      src="libs/js/minifyScript.js"
+    ></script>
   </body>
 </html>

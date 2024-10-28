@@ -5,7 +5,7 @@
     $ch = curl_init();
     $url = 'https://secure.geonames.org/';
 
-    function postData($url, $property) 
+    function postData($url, $property = false) 
     {
         global $ch;
 
@@ -17,7 +17,7 @@
         $output['status']['code'] = "200";
         $output['status']['name'] = "ok";
         $output['status']['description'] = "success";
-        $output['data'] = $server_response[$property];
+        $output['data'] = $property ? $server_response[$property] : $server_response;
 
         echo json_encode($output);
     }
@@ -31,7 +31,7 @@
     if (isset($_POST["postalCode"])) {
         $url = $url . "findNearbyPostalCodesJSON?postalcode=" . urlencode($_POST["postalCode"]) . "&radius=30&country=US&username=jordanss";
 
-        postData($url, "postalCodes");
+        postData($url);
     }
 
     if (isset($_POST["wikipediaSearch"])) {
