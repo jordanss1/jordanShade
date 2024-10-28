@@ -14,7 +14,7 @@ WORKDIR /var/www/html
 COPY index.html ./
 
 # Copy the lib directory and its contents
-COPY lib/ ./lib/
+COPY libs/ ./libs/
 
 # Make sure the permissions are correct
 RUN chown -R www-data:www-data /var/www/html
