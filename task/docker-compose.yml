@@ -13,13 +13,13 @@ services:
       - "traefik.http.routers.crpytweb.tls.certResolver=letsencrypt"
       - "traefik.http.services.loadweb.loadbalancer.server.port=80"
     links:
-      - php-fpm
+      - api
     depends_on:
       - api
     networks:
       - dokploy-network
 
-  php-fpm:
+  api:
     image: php:8.2-fpm
     volumes:
       - ./:/var/www/html
