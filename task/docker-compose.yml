@@ -32,6 +32,6 @@ services:
       - "traefik.http.routers.crpytapi.tls.certResolver=letsencrypt"
       - "traefik.http.services.loadapi.loadbalancer.server.port=9000"
 
-  networks:
-    dokploy-network:
-      external: true
+networks:
+  dokploy-network:
+    external: true
