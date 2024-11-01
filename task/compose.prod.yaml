@@ -1,0 +1,37 @@
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webjss.rule=Host(`jordanss.co.uk`)"
+      - "traefik.http.routers.entryweb.entrypoints=websecure"
+      - "traefik.http.routers.crpytweb.tls.certResolver=letsencrypt"
+      - "traefik.http.services.loadweb.loadbalancer.server.port=80"
+    links:
+      - php-fpm
+    depends_on:
+      - api
+    networks:
+      - dokploy-network
+
+  php-fpm:
+    image: php:8.2-fpm
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apijss.rule=Host(`jordanss.co.uk`)"
+      - "traefik.http.routers.entryapi.entrypoints=websecure"
+      - "traefik.http.routers.crpytapi.tls.certResolver=letsencrypt"
+      - "traefik.http.services.loadapi.loadbalancer.server.port=9000"
+
+  networks:
+    dokploy-network:
+      external: true

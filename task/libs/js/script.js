@@ -20,7 +20,7 @@ $("#submit_1").on("click", () => {
     $("#results_label").html("Search results with name and population");
 
     $.ajax({
-      url: "libs/php/geocodeBackend.php",
+      url: "php/geocodeBackend.php",
       dataType: "json",
       data: {
         searchTerm: inputVal,
