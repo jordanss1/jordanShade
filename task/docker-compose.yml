@@ -5,7 +5,7 @@ services:
       - 80
     volumes:
       - ../files/./:/var/www/html
-      - ../files/default.conf:/etc/nginx/conf.d/default.conf
+      - ../files/conf.d/:/etc/nginx/conf.d/
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.webjss.rule=Host(`jordanss.co.uk`)"

@@ -1,6 +1,8 @@
 services:
   web:
-    image: nginx:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     volumes:
@@ -17,7 +19,9 @@ services:
           action: sync
 
   api:
-    image: php:8.2-fpm
+    build: 
+      context: ./libs/php
+      dockerfile: Dockerfile    
     ports:
       - "9000:9000"
     volumes:
