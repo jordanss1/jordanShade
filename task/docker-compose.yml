@@ -11,7 +11,7 @@ services:
       - traefik.http.routers.webjss.rule=Host(${WEB})
       - traefik.http.routers.entryweb.entrypoints=websecure
       - traefik.http.routers.crpytweb.tls.certResolver=letsencrypt
-      - traefik.http.services.loadweb.loadbalancer.server.port=80
+      - traefik.http.services.loadweb.loadbalancer.server.port=${WEB_PORT}
     links:
       - api
     depends_on:
@@ -34,7 +34,7 @@ services:
       - traefik.http.routers.apijss.rule=Host(${API})
       - traefik.http.routers.entryapi.entrypoints=websecure
       - traefik.http.routers.crpytapi.tls.certResolver=letsencrypt
-      - traefik.http.services.loadapi.loadbalancer.server.port=9000
+      - traefik.http.services.loadapi.loadbalancer.server.port=${API_PORT}
 
 networks:
   dokploy-network:
