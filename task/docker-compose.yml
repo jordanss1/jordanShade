@@ -7,17 +7,19 @@ services:
       - ../files/./:/var/www/html
       - ../files/conf.d/:/etc/nginx/conf.d/
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.webjss.rule=Host(`jordanss.co.uk`)"
-      - "traefik.http.routers.entryweb.entrypoints=websecure"
-      - "traefik.http.routers.crpytweb.tls.certResolver=letsencrypt"
-      - "traefik.http.services.loadweb.loadbalancer.server.port=80"
+      - traefik.enable=true
+      - traefik.http.routers.webjss.rule=Host(${WEB})
+      - traefik.http.routers.entryweb.entrypoints=websecure
+      - traefik.http.routers.crpytweb.tls.certResolver=letsencrypt
+      - traefik.http.services.loadweb.loadbalancer.server.port=80
     links:
       - api
     depends_on:
       - api
     networks:
       - dokploy-network
+    env_file:
+      - .env
 
   api:
     image: php:8.2-fpm
@@ -28,11 +30,11 @@ services:
     networks:
       - dokploy-network
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.apijss.rule=Host(`jordanss.co.uk`)"
-      - "traefik.http.routers.entryapi.entrypoints=websecure"
-      - "traefik.http.routers.crpytapi.tls.certResolver=letsencrypt"
-      - "traefik.http.services.loadapi.loadbalancer.server.port=9000"
+      - traefik.enable=true
+      - traefik.http.routers.apijss.rule=Host(${API})
+      - traefik.http.routers.entryapi.entrypoints=websecure
+      - traefik.http.routers.crpytapi.tls.certResolver=letsencrypt
+      - traefik.http.services.loadapi.loadbalancer.server.port=9000
 
 networks:
   dokploy-network:

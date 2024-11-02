@@ -17,6 +17,7 @@ services:
         - path: .
           target: /var/www/html
           action: sync
+ 
 
   api:
     build: 
