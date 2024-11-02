@@ -2,7 +2,7 @@ services:
   web:
     image: nginx:latest
     ports:
-      - 80
+      - ${WEB_PORT}
     volumes:
       - ../files/./:/var/www/html
       - ../files/conf.d/:/etc/nginx/conf.d/
@@ -26,7 +26,7 @@ services:
     volumes:
       - ../files/./:/var/www/html
     ports:
-      - 9000
+      - ${API_PORT}
     networks:
       - dokploy-network
     labels:
