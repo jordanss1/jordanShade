@@ -1,17 +1,17 @@
 services:
   web:
     image: nginx:latest
-    ports:
+    expose:
       - ${WEB_PORT}
     volumes:
       - ../files/./:/var/www/html
       - ../files/conf.d/:/etc/nginx/conf.d/
     labels:
       - traefik.enable=true
-      - traefik.http.routers.webjss.rule=Host(${WEB})
-      - traefik.http.routers.entryweb.entrypoints=websecure
-      - traefik.http.routers.crpytweb.tls.certResolver=letsencrypt
-      - traefik.http.services.loadweb.loadbalancer.server.port=${WEB_PORT}
+      - traefik.http.routers.web-app.rule=Host(${WEB})
+      - traefik.http.routers.web-app.entrypoints=websecure
+      - traefik.http.routers.web-app.tls.certResolver=letsencrypt
+      - traefik.http.services.web-app.loadbalancer.server.port=${WEB_PORT}
     links:
       - api
     depends_on:
@@ -25,16 +25,16 @@ services:
     image: php:8.2-fpm
     volumes:
       - ../files/./:/var/www/html
-    ports:
+    expose:
       - ${API_PORT}
     networks:
       - dokploy-network
     labels:
       - traefik.enable=true
-      - traefik.http.routers.apijss.rule=Host(${API})
-      - traefik.http.routers.entryapi.entrypoints=websecure
-      - traefik.http.routers.crpytapi.tls.certResolver=letsencrypt
-      - traefik.http.services.loadapi.loadbalancer.server.port=${API_PORT}
+      - traefik.http.routers.api-app.rule=Host(${API})
+      - traefik.http.routers.api-app.entrypoints=websecure
+      - traefik.http.routers.api-app.tls.certResolver=letsencrypt
+      - traefik.http.services.api-app.loadbalancer.server.port=${API_PORT}
 
 networks:
   dokploy-network:
