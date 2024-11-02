@@ -4,8 +4,8 @@ services:
     expose:
       - ${WEB_PORT}
     volumes:
-      - ../files/./:/var/www/html
-      - ../files/conf.d/:/etc/nginx/conf.d/
+      - ./:/var/www/html
+      - ./conf.d/:/etc/nginx/conf.d/
     labels:
       - traefik.enable=true
       - traefik.http.routers.web-app.rule=Host(${WEB})
@@ -24,7 +24,7 @@ services:
   api:
     image: php:8.2-fpm
     volumes:
-      - ../files/./:/var/www/html
+      - ./:/var/www/html
     expose:
       - ${API_PORT}
     networks:
